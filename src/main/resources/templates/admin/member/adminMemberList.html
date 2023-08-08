@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="section-top-border">
+    <h3 class="mb-40">회원목록</h3>
+    <div class="progress-table-wrap">
+        <div class="progress-table">
+            <div class="table-head">
+                <div class="serial">번호</div>
+                <div class="country">회원아이디</div>
+                <div class="visit">회원이름</div>
+                <div class="visit">성별</div>
+                <div class="visit">생년월일</div>
+                <div class="visit">연락처</div>
+                <div class="visit">이메일</div>
+                <div class="country">집주소</div>
+                <div class="visit">보유포인트</div>
+                <div class="visit">가입일자</div>
+            </div>
+            <c:choose>
+                <c:when test="${empty memberList }">
+                    <tr align="center">
+                        <td colspan="6">가입된 회원이 없습니다.</td>
+                    </tr>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="memberDTO" items="${memberList }" varStatus="i">
+                        <div class="table-row">
+                            <div class="serial">${i.count }</div>
+                            <div class="country">${memberDTO.memberId }</div>
+                            <div class="visit">${memberDTO.memberNm }</div>
+                            <div class="visit">${memberDTO.sex }</div>
+                            <div class="visit">${memberDTO.dateBirth }</div>
+                            <div class="visit">${memberDTO.hp }</div>
+                            <div class="visit">${memberDTO.email }</div>
+                            <div class="country">${memberDTO.roadAddress }</div>
+                            <div class="visit">${memberDTO.point }P</div>
+                            <div class="visit">
+                                <fmt:formatDate value="${memberDTO.joinDt }"
+                                                pattern="yyyy-MM-dd" />
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
+</div>
+</body>
+</html>
